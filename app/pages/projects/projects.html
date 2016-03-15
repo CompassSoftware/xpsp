@@ -4,23 +4,16 @@
     <ion-icon name="menu"></ion-icon>
   </button>
 </ion-navbar>
-<ion-list>
-  <ion-item>
-    <ion-avatar item-left>
-      <ion-icon name="heart"></ion-icon>
-    </ion-avatar>
-    <h2>[Title]</h2>
-    <ion-row>
-      <ion-col width-90>
-        <ion-badge item-left>Tag 1</ion-badge>
-        <ion-badge item-left>Tag 2</ion-badge>
-      </ion-col>
-      <ion-col width-10>
-        <h2>2:50</h2>
-      </ion-col>
-    </ion-row>
-  </ion-item>
-</ion-list>
-<button fab fab-right fab-bottom>
-  <ion-icon name="add"></ion-icon>
-</button>
+<ion-content>
+  <ion-searchbar [(ngModel)]="projectQuery" (input)="filterProjects($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="#project of projects">
+      <h2>{{project.name}}</h2>
+      <p>{{project.description}}</p>
+      <ion-badge item-right [class]="project.active ? 'badge-secondary' : 'badge-primary'">{{project.delta_time}}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <button fab fab-right fab-bottom>
+    <ion-icon name="add"></ion-icon>
+  </button>
+</ion-content>
