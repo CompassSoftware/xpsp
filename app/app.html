@@ -1,0 +1,23 @@
+<ion-menu type="reveal" [content]="content">
+  <ion-toolbar>
+    <ion-title>User</ion-title>
+  </ion-toolbar>
+  <ion-content>
+    <ion-card>
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="https://en.gravatar.com/userimage/52524734/75b1eafa8105358ffc98c5f3de9e1a30.jpg?size=200"/>
+        </ion-avatar>
+        <h2>Stephen Bunn</h2>
+        <p>August 8, 1995</p>
+      </ion-item>
+    </ion-card>
+    <br/>
+    <ion-list>
+      <!-- TODO: handle changing of Logout/Login when user is logged in -->
+      <button ion-item (click)="openPage(loginPage)">Logout</button>
+      <button ion-item (click)="openPage(rootPage)">Projects</button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>

@@ -1,0 +1,22 @@
+<ion-toolbar>
+  <ion-buttons start>
+    <button royal (click)="close()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-title>New Project</ion-title>
+</ion-toolbar>
+<ion-content>
+  <form [ngFormModel]="projectForm" (submit)="create($event)">
+    <ion-item>
+      <ion-label floating>Project Name</ion-label>
+      <ion-input type="text" ngControl="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Project Description</ion-label>
+      <ion-input type="text" ngControl="description"></ion-input>
+    </ion-item>
+    <br/>
+    <button full secondary type="submit" [disabled]="!projectForm.valid">Create</button>
+  </form>
+</ion-content>
