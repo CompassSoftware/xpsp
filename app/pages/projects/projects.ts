@@ -1,71 +1,39 @@
 import {FormBuilder, Validators} from 'angular2/common';
+import {OnInit} from 'angular2/core';
 import {Page, Modal, ViewController, NavController, NavParams} from 'ionic-angular';
+import {CreateProjectModal} from './modals/create-project.mod';
+import {Project} from '../../shared/interfaces/project';
+import {ProjectList} from '../../components/project-list/project-list.cmp';
+import {ProjectDetail} from '../../components/project-detail/project-detail.cmp';
+import {ProjectProvider} from '../../services/project-provider/project-provider.svc';
 
 @Page({
-  templateUrl: 'build/pages/projects/project-form.html'
-})
-class CreateProjectModal {
-  viewCtrl: ViewController;
-  projectForm: any;
-  projectData: any;
-
-  constructor(viewCtrl: ViewController, form: FormBuilder) {
-    this.viewCtrl = viewCtrl;
-    this.projectForm = form.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required]
-    });
-  }
-
-  create(event) {
-    this.projectData = {
-      name: this.projectForm.value.name,
-      description: this.projectForm.value.description,
-      delta_time: '00:00:00',
-      active: false
-    };
-    event.preventDefault();
-    this.close(true);
-  }
-
-  close(push: boolean = false) {
-    this.viewCtrl.dismiss((push ? this.projectData : null));
-  }
-}
-
-@Page({
-  templateUrl: 'build/pages/projects/projects.html'
+  templateUrl: 'build/pages/projects/projects.html',
+  directives: [ProjectDetail, ProjectList],
+  providers: [ProjectProvider]
 })
 export class ProjectsPage {
   nav: NavController;
   projectQuery: string;
-  projects: Array<any>;
+  projects: Array<Project>;
+  filtered_projects: Array<Project>;
 
-  constructor(nav: NavController) {
+  constructor(nav: NavController, private _projectProvider: ProjectProvider) {
     this.nav = nav;
     this.projectQuery = '';
-    this.initializeProjects();
+    this.projects = [];
+    this.filtered_projects = [];
   }
 
-  initializeProjects() {
-    // TODO: Retrieve projects from server,
-    // NOTE: Hard-coded test data
-    this.projects = [{
-      name: 'Project 1',
-      description: 'A description of Project 1',
-      delta_time: '09:30:22',
-      active: false
-    }, {
-      name: 'Project 2',
-      description: 'A description of Project 2',
-      delta_time: '10:11:55',
-      active: true
-    }, {
-      name: 'Project 3',
-      description: 'A description of Project 3',
-      delta_time: '03:20:11',
-      active: false
-    }];
+  getProjects() {
+    this._projectProvider.getProjects().then(projects => {
+      this.projects = projects;
+      this.filtered_projects = this.projects;
+    });
+  }
+
+  ngOnInit() {
+    this.getProjects();
   }
 
   createProject(button) {
@@ -79,12 +47,12 @@ export class ProjectsPage {
   }
 
   filterProjects(searchbar) {
-    this.initializeProjects();
     var query = searchbar.value;
     if (query.trim() == '') {
+      this.filtered_projects = this.projects;
       return;
     } else {
-      this.projects = this.projects.filter((value) => {
+      this.filtered_projects = this.filtered_projects.filter((value) => {
         if (value.name.toLowerCase().indexOf(query.toLowerCase()) > -1) {
           return true;
         } else {

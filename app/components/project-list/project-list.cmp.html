@@ -1,0 +1,5 @@
+<ion-list *ngIf="projects.length > 0">
+  <ion-item *ngFor="#project of projects">
+    <project-detail [project]="project"></project-detail>
+  </ion-item>
+</ion-list>
