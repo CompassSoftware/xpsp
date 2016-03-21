@@ -6,11 +6,13 @@ import {Project} from '../../shared/interfaces/project';
 import {ProjectList} from '../../components/project-list/project-list.cmp';
 import {ProjectDetail} from '../../components/project-detail/project-detail.cmp';
 import {ProjectProvider} from '../../services/project-provider/project-provider.svc';
+import {ProjectSort} from '../../pipes/project-sort/project-sort.pip';
 
 @Page({
   templateUrl: 'build/pages/projects/projects.html',
   directives: [ProjectDetail, ProjectList],
-  providers: [ProjectProvider]
+  providers: [ProjectProvider],
+  pipes: [ProjectSort]
 })
 export class ProjectsPage {
   nav: NavController;
@@ -22,7 +24,6 @@ export class ProjectsPage {
     this.nav = nav;
     this.projectQuery = '';
     this.projects = [];
-    this.filtered_projects = [];
   }
 
   getProjects() {
@@ -44,21 +45,5 @@ export class ProjectsPage {
         this.projects.push(project);
       }
     });
-  }
-
-  filterProjects(searchbar) {
-    var query = searchbar.value;
-    if (query.trim() == '') {
-      this.filtered_projects = this.projects;
-      return;
-    } else {
-      this.filtered_projects = this.filtered_projects.filter((value) => {
-        if (value.name.toLowerCase().indexOf(query.toLowerCase()) > -1) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-    }
   }
 }
