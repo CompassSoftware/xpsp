@@ -1,6 +1,7 @@
 import {App, IonicApp, Platform, MenuController} from 'ionic-angular';
 import {ProjectsPage} from './pages/projects/projects';
 import {LoginPage} from './pages/login/login';
+import {SettingsPage} from './pages/settings/settings';
 
 // https://angular.io/docs/ts/latest/api/core/Type-interface.html
 import {Type} from 'angular2/core';
@@ -15,6 +16,7 @@ export class MyApp {
   rootPage: Type = ProjectsPage;
   menu: MenuController;
   loginPage: Type = LoginPage;
+  settingsPage: Type = SettingsPage;
 
   constructor(app: IonicApp, platform: Platform, menu: MenuController) {
     platform.ready().then(() => {

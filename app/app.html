@@ -5,18 +5,18 @@
   <ion-content>
     <ion-card>
       <ion-item>
-        <ion-avatar item-left>
+        <ion-avatar><center>
           <img src="https://en.gravatar.com/userimage/52524734/75b1eafa8105358ffc98c5f3de9e1a30.jpg?size=200"/>
-        </ion-avatar>
-        <h2>Stephen Bunn</h2>
-        <p>August 8, 1995</p>
+        </center></ion-avatar>
+        <h2><center>Stephen Bunn</center></h2>
       </ion-item>
     </ion-card>
     <br/>
     <ion-list>
       <!-- TODO: handle changing of Logout/Login when user is logged in -->
-      <button ion-item (click)="openPage(loginPage)">Logout</button>
       <button ion-item (click)="openPage(rootPage)">Projects</button>
+      <button ion-item (click)="openPage(settingsPage)">Settings</button>
+      <button ion-item (click)="openPage(loginPage)">Logout</button>
     </ion-list>
   </ion-content>
 </ion-menu>
