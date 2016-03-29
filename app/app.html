@@ -7,12 +7,15 @@
         </center></ion-avatar>
         <h2><center>Stephen Bunn</center></h2>
       </ion-item>
+      <ion-list>
+        <button ion-item (click)="openPage(rootPage)">Projects</button>
+      </ion-list>
     </ion-pane>
   </ion-content>
   <ion-footer>
     <ion-list>
       <!-- TODO: handle changing of Logout/Login when user is logged in -->
-      <!-- <button ion-item (click)="openPage(rootPage)">Projects</button> -->
+
       <button ion-item (click)="openPage(settingsPage)">Settings</button>
       <button ion-item (click)="openPage(loginPage)">Logout</button>
     </ion-list>
