@@ -3,3 +3,6 @@
     <project-detail [project]="project"></project-detail>
   </div>
 </ion-list>
+<ion-pane *ngIf="projects.length <= 0">
+  <center><h3 dark>No Results</h3></center>
+</ion-pane>

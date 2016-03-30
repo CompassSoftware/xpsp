@@ -1,37 +1,37 @@
 import {Activity} from '../../shared/interfaces/activity';
 
 export var ACTIVITIES: Activity[] = [{
-  name: 'Activity 1',
+  name: 'Fixing Bugs',
   icon: 'bug',
-  time: '00:09:03',
+  delta_time: '00:09:03',
   children: [{
-    name: 'Sub-Activity 1-1',
+    name: 'Documenting Bugs',
     icon: 'analytics',
-    time: '00:09:03',
+    delta_time: '00:09:03',
     children: []
   }]
 }, {
-  name: 'Activity 2',
+  name: 'Coffee Break',
   icon: 'cafe',
-  time: '00:01:12',
+  delta_time: '00:01:12',
   children: []
 }, {
-  name: 'Activity 3',
+  name: 'Programming',
   icon: 'code',
-  time: '01:05:05',
+  delta_time: '01:05:05',
   children: [{
-    name: 'Sub-Activity 3-1',
+    name: 'Implementing Libraries',
     icon: 'code-download',
-    time: '00:06:02',
+    delta_time: '00:06:02',
     children: []
   }, {
-    name: 'Sub-Activity 3-2',
+    name: 'Novel Coding',
     icon: 'code-working',
-    time: '00:55:03',
+    delta_time: '00:55:03',
     children: [{
-      name: 'Sub-Activity 3-2-1',
+      name: 'Documenting Code',
       icon: 'book',
-      time: '00:03:02',
+      delta_time: '00:03:02',
       children: []
     }]
   }]

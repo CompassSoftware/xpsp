@@ -1,18 +1,18 @@
 import {Project} from '../../shared/interfaces/project';
 
 export var PROJECTS: Project[] = [{
-    name: 'Project 1',
+    name: 'Personal Database Project',
     description: 'A description of Project 1',
     delta_time: '09:30:22',
-    active: false
+    tags: ['Personal']
   }, {
-    name: 'Project 2',
+    name: 'Boring School Assignments',
     description: 'A description of Project 2',
     delta_time: '10:11:55',
-    active: true
+    tags: ['School', 'Networking', 'Python']
   }, {
-    name: 'Project 3',
+    name: 'Managing Microservices',
     description: 'A description of Project 3',
     delta_time: '03:20:11',
-    active: false
+    tags: ['Work', 'JavaScript']
 }];

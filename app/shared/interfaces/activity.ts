@@ -1,6 +1,6 @@
 export interface Activity {
   name: String,
-  time: String,
+  delta_time: String,
   icon: String,
   children: this[]
 }

@@ -1,9 +1,9 @@
 <!-- FIXME: Inherit colors from app.variables.scss or separate css in component -->
-<ion-item-sliding [style.background]="(!expanded) ? '#ffffff' : '#f4f4f4'">
-  <ion-item>
+<ion-item-sliding>
+  <ion-item [style.background]="(!expanded) ? '#ffffff' : '#f4f4f4'">
     <ion-icon name="{{activity.icon}}" item-left></ion-icon>
     <h3>{{activity.name}}</h3>
-    <p>{{activity.time}}</p>
+    <p>{{activity.delta_time}}</p>
     <ion-icon [name]="(!expanded) ? 'ios-arrow-forward' : 'ios-arrow-down'" item-right></ion-icon>
   </ion-item>
   <ion-item-options>
