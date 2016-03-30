@@ -1,5 +1,6 @@
 import {App, IonicApp, Platform, MenuController} from 'ionic-angular';
 import {ProjectsPage} from './pages/projects/projects';
+import {ActivitiesPage} from './pages/activities/activities';
 import {LoginPage} from './pages/login/login';
 import {SettingsPage} from './pages/settings/settings';
 

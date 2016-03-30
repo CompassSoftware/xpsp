@@ -7,6 +7,7 @@ import {ProjectList} from '../../components/project-list/project-list.cmp';
 import {ProjectDetail} from '../../components/project-detail/project-detail.cmp';
 import {ProjectProvider} from '../../services/project-provider/project-provider.svc';
 import {ProjectSort} from '../../pipes/project-sort/project-sort.pip';
+import {ActivitiesPage} from '../activities/activities';
 
 @Page({
   templateUrl: 'build/pages/projects/projects.html',
@@ -19,11 +20,13 @@ export class ProjectsPage {
   projectQuery: string;
   projects: Array<Project>;
   filtered_projects: Array<Project>;
+  searchActive: boolean;
 
   constructor(nav: NavController, private _projectProvider: ProjectProvider) {
     this.nav = nav;
     this.projectQuery = '';
     this.projects = [];
+    this.searchActive = false;
   }
 
   getProjects() {
@@ -35,6 +38,10 @@ export class ProjectsPage {
 
   ngOnInit() {
     this.getProjects();
+  }
+
+  toggleSearchActive() {
+    this.searchActive = !this.searchActive;
   }
 
   createProject(button) {

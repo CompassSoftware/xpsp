@@ -1,3 +1,9 @@
-<h2>{{project.name}}</h2>
-<p>{{project.description}}</p>
-<ion-badge item-right [class]="project.active ? 'badge-secondary' : 'badge-primary'">{{project.delta_time}}</ion-badge>
+<ion-item (click)="projectTapped($event, project)">
+  <h2>{{project.name}}</h2>
+  <ion-row>
+    <div *ngFor="#tag of project.tags">
+      <p>{{tag}}/</p>
+    </div>
+  </ion-row>
+  <ion-badge item-right light>{{project.delta_time}}</ion-badge>
+</ion-item>

@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Input} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
+import {IONIC_DIRECTIVES} from 'ionic-angular';
 import {Project} from '../../shared/interfaces/project';
 import {ProjectDetail} from '../project-detail/project-detail.cmp';
 
@@ -8,7 +8,7 @@ import {ProjectDetail} from '../project-detail/project-detail.cmp';
   templateUrl: 'build/components/project-list/project-list.cmp.html',
   styleUrls: [],
   providers: [],
-  directives: [ProjectDetail],
+  directives: [IONIC_DIRECTIVES, ProjectDetail],
   pipes: []
 })
 export class ProjectList {
@@ -16,4 +16,5 @@ export class ProjectList {
   @Input() projects: Array<Project>;
 
   constructor() {}
+
 }
