@@ -1,0 +1,31 @@
+<ion-toolbar>
+  <ion-buttons start>
+    <button royal (click)="close()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-title>New Activity</ion-title>
+</ion-toolbar>
+<ion-content>
+  <form [ngFormModel]="activityForm" (submit)="create($event)">
+    <ion-item>
+      <ion-label floating>Activity Name</ion-label>
+      <ion-input type="text" ngControl="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Activity Description</ion-label>
+      <ion-input type="text" ngControl="description"></ion-input>
+    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>Activity Icons</ion-label>
+        <ion-select ngControl="icon">
+          <ion-option *ngFor="#icon of icons">{{icon.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngFor="#icon of icons"><ion-icon name="{{icon.name}}"></ion-icon> {{icon.name}}</ion-item>
+    </ion-list>
+    <br/>
+    <button full secondary type="submit" [disabled]="!activityForm.valid">Create</button>
+  </form>
+</ion-content>
