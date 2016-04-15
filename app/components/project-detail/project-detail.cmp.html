@@ -1,9 +1,21 @@
-<ion-item (click)="projectTapped($event, project)">
-  <h2>{{project.name}}</h2>
-  <ion-row>
-    <div *ngFor="#tag of project.tags">
-      <p>{{tag}}/</p>
-    </div>
-  </ion-row>
-  <ion-badge item-right light>{{project.delta_time}}</ion-badge>
-</ion-item>
+<ion-item-sliding>
+  <ion-item (click)="projectTapped($event, project)">
+    <h2>{{project.name}}</h2>
+    <ion-row>
+      <div *ngFor="#tag of project.tags">
+        <ion-badge style="margin-right: 5px;">{{tag}}</ion-badge>
+      </div>
+    </ion-row>
+    <ion-badge item-right light>{{project.delta_time}}</ion-badge>
+  </ion-item>
+  <ion-item-options>
+    <button danger (click)="openMenu(project)">
+      <ion-icon name="trash"></ion-icon>
+      Delete
+    </button>
+    <button primary (click)="editProject($event)">
+      <ion-icon name="ios-more"></ion-icon>
+      Edit
+    </button>
+  </ion-item-options>
+<ion-item-sliding>

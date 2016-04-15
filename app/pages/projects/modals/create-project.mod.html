@@ -1,7 +1,7 @@
 <ion-toolbar>
   <ion-buttons start>
     <button royal (click)="close()">
-      <ion-icon name="arrow-back"></ion-icon>
+      <ion-icon name="arrow-back"></ion-icon>Back
     </button>
   </ion-buttons>
   <ion-title>New Project</ion-title>
@@ -15,6 +15,10 @@
     <ion-item>
       <ion-label floating>Project Description</ion-label>
       <ion-input type="text" ngControl="description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Project Tags</ion-label>
+      <ion-input type="text" ngControl="tags"></ion-input>
     </ion-item>
     <br/>
     <button full secondary type="submit" [disabled]="!projectForm.valid">Create</button>

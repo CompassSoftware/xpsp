@@ -1,6 +1,6 @@
 <ion-list *ngIf="projects.length > 0">
   <div *ngFor="#project of projects">
-    <project-detail [project]="project"></project-detail>
+    <project-detail [project]="project" [projects]="projects"></project-detail>
   </div>
 </ion-list>
 <ion-pane *ngIf="projects.length <= 0">

@@ -14,7 +14,8 @@ export class CreateProjectModal {
     this.viewCtrl = viewCtrl;
     this.projectForm = form.group({
       name: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      tags: ['', Validators.required]
     });
   }
 
@@ -22,6 +23,7 @@ export class CreateProjectModal {
     this.projectData = {
       name: this.projectForm.value.name,
       description: this.projectForm.value.description,
+      tags: this.projectForm.value.tags.split(","),
       delta_time: '00:00:00',
       active: false
     };
