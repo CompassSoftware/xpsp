@@ -7,7 +7,11 @@
     <ion-icon [name]="(!expanded) ? 'ios-arrow-forward' : 'ios-arrow-down'" item-right></ion-icon>
   </ion-item>
   <ion-item-options>
-    <button primary>
+    <button danger (click)="openMenu(project)">
+      <ion-icon name="trash"></ion-icon>
+      Delete
+    </button>
+    <button primary (click)="editActivity($event)">
       <ion-icon name="ios-more"></ion-icon>
       Edit
     </button>

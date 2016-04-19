@@ -24,6 +24,10 @@ export class ActivityList {
     return (activity === this.expandedActivity);
   }
 
+  getExpanded() {
+    return this.expandedActivity;
+  }
+
   toggleExpanded(activity) {
     if (!this.isExpanded(activity)) {
       this.expandedActivity = activity;

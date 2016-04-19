@@ -1,25 +1,29 @@
+
 import {FormBuilder, Validators} from 'angular2/common';
-import {Page, Modal, ViewController, NavController, NavParams} from 'ionic-angular';
+import {IONIC_DIRECTIVES, Page, Modal, ViewController, NavController, NavParams} from 'ionic-angular';
 import {Icon} from '../../../shared/interfaces/icon';
 import {ICONS} from '../../../services/icon-provider/mock-icons';
 import {IconProvider} from '../../../services/icon-provider/icon-provider.svc';
+import {Activity} from '../../../shared/interfaces/activity';
 import {ActivityList} from '../../../components/activity-list/activity-list.cmp';
 
 @Page({
-  templateUrl: 'build/pages/activities/modals/create-activity.mod.html',
+  templateUrl :'build/pages/activities/modals/edit-activity.mod.html',
+  directives: [IONIC_DIRECTIVES],
   providers: [IconProvider]
 })
-export class CreateActivityModal {
+export class EditActivityModal {
   viewCtrl: ViewController;
-  activityForm: any;
-  activityData: any;
+  editForm: any;
+  activityData: Activity;
+  activity: Activity;
   private icons: Array<Icon>;
 
   constructor(viewCtrl: ViewController, form: FormBuilder, private _iconProvider: IconProvider) {
     this.viewCtrl = viewCtrl;
-    this.activityForm = form.group({
-      name: ['', Validators.required],
-      icon: ['', Validators.required]
+    this.editForm = form.group({
+      name: [''],
+      icon: ['']
     });
   }
 
@@ -33,19 +37,18 @@ export class CreateActivityModal {
     this.getIcons();
   }
 
-  create(event) {
+  edit(event) {
     this.activityData = {
-      name: this.activityForm.value.name,
-      icon: this.activityForm.value.icon,
+      name: this.editForm.value.name,
+      icon: this.editForm.value.icon,
       children: [],
-      delta_time: '00:00:00',
-      active: false
+      delta_time: '00:00:00'
     };
     event.preventDefault();
     this.close(true);
   }
 
   close(push: boolean = false) {
-    this.viewCtrl.dismiss((push ? this.activityData : null));
+    this.viewCtrl.dismiss((push ? this.activityData :null));
   }
 }

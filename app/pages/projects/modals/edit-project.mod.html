@@ -6,27 +6,20 @@
   </ion-buttons>
   <ion-title>Edit Project</ion-title>
 </ion-toolbar>
-
 <ion-content>
   <form [ngFormModel]="editForm" (submit)="edit($event)">
-    <ion-row>
-      <ion-item>
-        <ion-label floating>Project Name</ion-label>
-        <ion-input type="text" value="project.name" ngControl="name"></ion-input>
-      </ion-item>
-    </ion-row>
-    <ion-row>
-      <ion-item>
-        <ion-label floating>Project Description</ion-label>
-        <ion-input type="text" value="project.description" ngControl="description"></ion-input>
-      </ion-item>
-    </ion-row>
-    <ion-row>
-      <ion-item>
-        <ion-label floating>Project Tags</ion-label>
-        <ion-input type="text" value="project.tags" ngControl="tags"></ion-input>
-      </ion-item>
-    </ion-row>
+    <ion-item>
+      <ion-label floating>Project Name</ion-label>
+      <ion-input type="text" value="project.name" ngControl="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Project Description</ion-label>
+      <ion-input type="text" value="project.description" ngControl="description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Project Tags</ion-label>
+      <ion-input type="text" value="project.tags" ngControl="tags"></ion-input>
+    </ion-item>
     <br/>
     <center>
       <button button-small primary type="submit">Save Changes</button>
