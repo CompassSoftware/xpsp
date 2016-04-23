@@ -55,6 +55,9 @@ export class ProjectProvider {
     return this._db.remove(project);
   }
 
+  updateProject(project) {
+    return this._db.put(project);
+  }
 
   getProjects() {
     if (!this._projects) {

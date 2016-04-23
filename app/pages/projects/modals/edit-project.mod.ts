@@ -10,7 +10,7 @@ import {Project} from '../../../shared/interfaces/project';
 export class EditProjectModal {
   viewCtrl: ViewController;
   editForm: any;
-  projectData: Project;
+  projectData: any;
   project: Project;
 
   constructor(viewCtrl: ViewController, form: FormBuilder) {
@@ -26,8 +26,7 @@ export class EditProjectModal {
     this.projectData = {
       name: this.editForm.value.name,
       description: this.editForm.value.description,
-      tags: this.editForm.value.tags,
-      delta_time: '00:00:00'
+      tags: this.editForm.value.tags.split(','),
     };
     // event.preventDefault();
     this.close(true);

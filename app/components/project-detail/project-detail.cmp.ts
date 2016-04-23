@@ -19,7 +19,6 @@ export class ProjectDetail {
   platform: Platform;
 
   @Input() project: Project;
-  @Input() projects: Project[];
 
   constructor(nav: NavController, private _projectProvider: ProjectProvider) {
     this.nav = nav;
@@ -32,9 +31,12 @@ export class ProjectDetail {
   editProject(button) {
     let modal = Modal.create(EditProjectModal);
     this.nav.present(modal);
-    modal.onDismiss(project => {
-      if (project != null) {
-        this.project = project;
+    modal.onDismiss(mdlObj => {
+      if (mdlObj != null) {
+        for (var attrname in mdlObj) {
+          this.project[attrname] = mdlObj[attrname];
+        }
+        this._projectProvider.updateProject(mdlObj);
       }
     })
   }
