@@ -13,12 +13,13 @@ export class EditProjectModal {
   projectData: any;
   project: Project;
 
-  constructor(viewCtrl: ViewController, form: FormBuilder) {
+  constructor(params: NavParams, viewCtrl: ViewController, form: FormBuilder) {
+    this.project = params.get('project');
     this.viewCtrl = viewCtrl;
     this.editForm = form.group({
-      name: [''],
-      description: [''],
-      tags: ['']
+      name: [this.project.name],
+      description: [this.project.description],
+      tags: [this.project.tags.join()]
     });
   }
 

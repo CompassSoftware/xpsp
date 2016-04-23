@@ -29,7 +29,7 @@ export class ProjectDetail {
   }
 
   editProject(button) {
-    let modal = Modal.create(EditProjectModal);
+    let modal = Modal.create(EditProjectModal, {project: this.project});
     this.nav.present(modal);
     modal.onDismiss(mdlObj => {
       if (mdlObj != null) {
