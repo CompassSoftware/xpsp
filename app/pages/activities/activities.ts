@@ -15,11 +15,18 @@ import {ActivityProvider} from '../../services/activity-provider/activity-provid
 export class ActivitiesPage {
   nav: NavController;
   private activities: Array<Activity>;
-
+  private expandedActivities: Array<Activity>;
+  private level: Number;
 
   constructor(nav: NavController, private _activityProvider: ActivityProvider) {
     this.nav = nav;
     this.activities = [];
+    this.expandedActivities = [];
+    this.level = 0;
+  }
+
+  ngOnInit() {
+    this.getActivities();
   }
 
   getActivities() {
@@ -28,18 +35,16 @@ export class ActivitiesPage {
     });
   }
 
-
-
-  ngOnInit() {
-    this.getActivities();
+  getExpanded() {
+    return this.expandedActivities[this.expandedActivities.length - 1];
   }
 
   createActivity(button) {
-    let modal = Modal.create(CreateActivityModal);
+    let modal = Modal.create(CreateActivityModal, {parent: this.getExpanded()});
     this.nav.present(modal);
     modal.onDismiss(activity => {
       if (activity != null) {
-        this.activities.push(activity);
+        this._activityProvider.addActivity(activity, this.getExpanded());
       }
     });
   }

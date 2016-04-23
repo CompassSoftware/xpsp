@@ -1,6 +1,7 @@
 import {Component, Input} from 'angular2/core';
 import {IONIC_DIRECTIVES, NavController, Modal, ActionSheet, Platform} from 'ionic-angular';
 import {Activity} from '../../shared/interfaces/activity';
+import {ActivityProvider} from '../../services/activity-provider/activity-provider.svc';
 import {Icon} from '../../shared/interfaces/icon';
 import {IconProvider} from '../../services/icon-provider/icon-provider.svc';
 import {EditActivityModal} from '../../pages/activities/modals/edit-activity.mod';
@@ -20,9 +21,14 @@ export class ActivityDetail {
   platform: Platform;
 
   @Input() activity: Activity;
+  @Input() expandedActivities: Array<Activity>;
   @Input() expanded: boolean;
 
-  constructor(private _iconProvider: IconProvider, nav: NavController) {
+  constructor(
+    nav: NavController,
+    private _iconProvider: IconProvider,
+    private _activityProvider: ActivityProvider
+  ) {
     this.icons = [];
     this.nav = nav;
   }
@@ -36,16 +42,21 @@ export class ActivityDetail {
       this.icons = icons;
     });
   }
+
   editActivity(button) {
-    let modal = Modal.create(EditActivityModal);
+    let modal = Modal.create(EditActivityModal, {activity: this.activity});
     this.nav.present(modal);
-    modal.onDismiss(activity => {
-      if (activity != null) {
-        this.activity = activity;
+    modal.onDismiss(mdlObj => {
+      if (mdlObj != null) {
+        for (var attrname in mdlObj) {
+          this.activity[attrname] = mdlObj[attrname];
+        }
+        this._activityProvider.updateActivity(this.activity);
       }
     })
   }
-  openMenu(activity) {
+
+  openMenu() {
     this.actionSheet = ActionSheet.create({
       title: 'Activity',
       buttons: [
@@ -54,7 +65,10 @@ export class ActivityDetail {
           role: 'destructive',
           icon: 'trash',
           handler: () => {
-            // TODO
+            this._activityProvider.removeActivity(
+              this.activity,
+              this.expandedActivities[this.expandedActivities.length - 1]
+            );
           }
         },
         {

@@ -36,12 +36,13 @@ export class CreateActivityModal {
   create(event) {
     this.activityData = {
       name: this.activityForm.value.name,
-      icon: this.activityForm.value.icon,
+      icon: this.activityForm.value.icon
+        .replace(/\r?\n|\r| /g,''),
       children: [],
       delta_time: '00:00:00',
       active: false
     };
-    event.preventDefault();
+    // event.preventDefault();
     this.close(true);
   }
 

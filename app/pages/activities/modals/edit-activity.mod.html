@@ -8,22 +8,28 @@
 </ion-toolbar>
 <ion-content>
   <form [ngFormModel]="editForm" (submit)="edit($event)">
-    <ion-item>
-      <ion-label floating>Activity Name</ion-label>
-      <ion-input type="text" value="activity.name" ngControl="name"></ion-input>
-    </ion-item>
-    <ion-list>
-      <ion-item>
-        <ion-label>Activity Icons</ion-label>
-        <ion-select ngControl="icon">
-          <ion-option *ngFor="#icon of icons">{{icon.name}}</ion-option>
-        </ion-select>
-      </ion-item>
-      <!-- <ion-item *ngFor="#icon of icons"><ion-icon name="{{icon.name}}"></ion-icon> {{icon.name}}</ion-item> -->
-    </ion-list>
-    <br/>
-    <center>
-      <button button-small primary type="submit">Save Changes</button>
-    </center>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label floating>Activity Name</ion-label>
+          <ion-input type="text" value="activity.name" ngControl="name"></ion-input>
+        </ion-item>
+        <ion-list>
+          <ion-item>
+            <ion-label>Activity Icons</ion-label>
+            <ion-select ngControl="icon">
+              <ion-option *ngFor="#icon of icons">{{icon.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row center>
+      <ion-col>
+        <center>
+          <button button-small primary type="submit">Save Changes</button>
+        </center>
+      </ion-col>
+    </ion-row>
   </form>
 </ion-content>

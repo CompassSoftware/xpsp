@@ -2,7 +2,7 @@
   <ion-title>Activities</ion-title>
 </ion-navbar>
 <ion-content>
-  <activity-list [activities]="activities"></activity-list>
+  <activity-list [activities]="activities" [level]="level" [(expandedActivities)]="expandedActivities"></activity-list>
   <button fab fab-right fab-bottom (click)="createActivity($event)">
     <ion-icon name="add"></ion-icon>
   </button>

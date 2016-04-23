@@ -15,15 +15,16 @@ import {ActivityList} from '../../../components/activity-list/activity-list.cmp'
 export class EditActivityModal {
   viewCtrl: ViewController;
   editForm: any;
-  activityData: Activity;
+  activityData: any;
   activity: Activity;
   private icons: Array<Icon>;
 
-  constructor(viewCtrl: ViewController, form: FormBuilder, private _iconProvider: IconProvider) {
+  constructor(params: NavParams, viewCtrl: ViewController, form: FormBuilder, private _iconProvider: IconProvider) {
+    this.activity = params.get('activity');
     this.viewCtrl = viewCtrl;
     this.editForm = form.group({
-      name: [''],
-      icon: ['']
+      name: [this.activity.name],
+      icon: [this.activity.icon]
     });
   }
 
@@ -41,10 +42,8 @@ export class EditActivityModal {
     this.activityData = {
       name: this.editForm.value.name,
       icon: this.editForm.value.icon,
-      children: [],
-      delta_time: '00:00:00'
     };
-    event.preventDefault();
+    // event.preventDefault();
     this.close(true);
   }
 

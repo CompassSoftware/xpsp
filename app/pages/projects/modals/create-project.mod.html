@@ -8,19 +8,28 @@
 </ion-toolbar>
 <ion-content>
   <form [ngFormModel]="projectForm" (submit)="create($event)">
-    <ion-item>
-      <ion-label floating>Project Name</ion-label>
-      <ion-input type="text" ngControl="name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Project Description</ion-label>
-      <ion-input type="text" ngControl="description"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Project Tags</ion-label>
-      <ion-input type="text" ngControl="tags"></ion-input>
-    </ion-item>
-    <br/>
-    <button full secondary type="submit" [disabled]="!projectForm.valid">Create</button>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label floating>Project Name</ion-label>
+          <ion-input type="text" ngControl="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Project Description</ion-label>
+          <ion-input type="text" ngControl="description"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Project Tags</ion-label>
+          <ion-input type="text" ngControl="tags"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row center>
+      <ion-col>
+        <center>
+          <button large secondary type="submit" [disabled]="!projectForm.valid">Create Project</button>
+        </center>
+      </ion-col>
+    </ion-row>
   </form>
 </ion-content>

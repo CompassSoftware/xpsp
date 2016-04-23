@@ -2,6 +2,7 @@ import {Injectable} from 'angular2/core';
 
 let PouchDB = require('pouchdb');
 
+
 @Injectable()
 export class ProjectProvider {
   private _db;

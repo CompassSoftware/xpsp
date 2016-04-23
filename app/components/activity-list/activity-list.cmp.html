@@ -1,6 +1,6 @@
 <ion-list *ngIf="activities.length > 0">
   <div *ngFor="#activity of activities">
-    <activity-detail [activity]="activity" [expanded]="isExpanded(activity)" (click)="toggleExpanded(activity)"></activity-detail>
-    <activity-list *ngIf="isExpanded(activity)" [activities]="activity.children"></activity-list>
+    <activity-detail *ngIf="activity.level <= level" [activity]="activity" [expanded]="containsObject(activity, expandedActivities)" [expandedActivities]="expandedActivities" (click)="toggleExpanded(activity)"></activity-detail>
+    <activity-list *ngIf="containsObject(activity, expandedActivities)" [activities]="activity.children" [level]="level + 1" [(expandedActivities)]="expandedActivities"></activity-list>
   </div>
 </ion-list>

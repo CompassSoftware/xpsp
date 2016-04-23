@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {IONIC_DIRECTIVES} from 'ionic-angular';
 import {Activity} from '../../shared/interfaces/activity';
 import {ActivityDetail} from '../activity-detail/activity-detail.cmp';
@@ -13,26 +13,48 @@ import {ActivityDetail} from '../activity-detail/activity-detail.cmp';
 })
 export class ActivityList {
 
+  @Input() level: Number;
   @Input() activities: Array<Activity>;
-  private expandedActivity: Activity;
+  @Input() expandedActivities: Array<Activity>;
+  @Output() expandedActivitiesChange: EventEmitter<Object> = new EventEmitter(false);
 
   constructor() {
-    this.expandedActivity = null;
-  }
-
-  isExpanded(activity) {
-    return (activity === this.expandedActivity);
+    if (typeof this.expandedActivities === 'undefined') {
+      this.expandedActivities = [];
+    }
   }
 
   getExpanded() {
-    return this.expandedActivity;
+    return this.expandedActivities[this.expandedActivities.length - 1];
+  }
+
+  isExpanded(activity) {
+    return (activity === this.getExpanded());
+  }
+
+  containsObject(obj, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i] === obj) {
+        return true;
+      }
+    }
+    return false;
   }
 
   toggleExpanded(activity) {
-    if (!this.isExpanded(activity)) {
-      this.expandedActivity = activity;
-    } else {
-      this.expandedActivity = null;
+    let parent = this.getExpanded();
+    if (typeof parent != 'undefined') {
+      if (activity === parent) {
+        this.expandedActivities.pop();
+        return;
+      } else if (!(this.containsObject(activity, parent.children))) {
+        for (var i = 0; i < (parent.level + 1); i++) {
+          this.expandedActivities.pop();
+        }
+      }
     }
+    this.expandedActivities.push(activity);
+    this.expandedActivitiesChange.emit(this.expandedActivities);
   }
 }
