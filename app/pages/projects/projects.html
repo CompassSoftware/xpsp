@@ -1,4 +1,4 @@
-<ion-toolbar>
+<ion-navbar *navbar>
   <ion-buttons start>
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -10,7 +10,7 @@
       <ion-icon name="search"></ion-icon>
     </button>
   </ion-buttons>
-</ion-toolbar>
+</ion-navbar>
 <ion-content>
   <ion-pane>
     <ion-searchbar *ngIf="searchActive" [(ngModel)]="projectQuery"></ion-searchbar>
