@@ -1,6 +1,7 @@
 import {Component, Input} from 'angular2/core';
 import {IONIC_DIRECTIVES, NavController, Modal, ActionSheet, Platform} from 'ionic-angular';
 import {Project} from '../../shared/interfaces/project';
+import {ProjectProvider} from '../../services/project-provider/project-provider.svc';
 import {ActivitiesPage} from '../../pages/activities/activities';
 import {EditProjectModal} from '../../pages/projects/modals/edit-project.mod';
 
@@ -20,7 +21,7 @@ export class ProjectDetail {
   @Input() project: Project;
   @Input() projects: Project[];
 
-  constructor(nav: NavController) {
+  constructor(nav: NavController, private _projectProvider: ProjectProvider) {
     this.nav = nav;
   }
 
@@ -47,11 +48,7 @@ export class ProjectDetail {
           role: 'destructive',
           icon: 'trash',
           handler: () => {
-            for (var i = 0; i < this.projects.length; i++) {
-              if (this.projects[i] === project) {
-                this.projects.splice(i, 1);
-              }
-            }
+            this._projectProvider.removeProject(project);
           }
         },
         {

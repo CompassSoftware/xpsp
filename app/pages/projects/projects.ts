@@ -49,7 +49,7 @@ export class ProjectsPage {
     this.nav.present(modal);
     modal.onDismiss(project => {
       if (project != null) {
-        this.projects.push(project);
+        this._projectProvider.addProject(project);
       }
     });
   }
