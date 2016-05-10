@@ -6,7 +6,7 @@
         <ion-badge style="margin-right: 5px;">{{tag}}</ion-badge>
       </div>
     </ion-row>
-    <ion-badge item-right light>{{project.delta_time}}</ion-badge>
+    <ion-badge item-right light>{{project.delta_time|timeFormat}}</ion-badge>
   </ion-item>
   <ion-item-options>
     <button danger (click)="openMenu(project)">

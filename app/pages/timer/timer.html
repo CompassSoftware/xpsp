@@ -1,6 +1,33 @@
 <ion-navbar *navbar>
-  <ion-title>Timer</ion-title>
+  <ion-title>{{activity.name}}</ion-title>
 </ion-navbar>
-<ion-content>
-  Timer works!
+<ion-content class="content">
+  <div class="timer clock"
+    [ngClass]="{
+      'running': started,
+      'reset': !started
+    }">
+    <span class="time">
+      {{timer|clockFormat}}
+    </span>
+  </div>
+  <ion-list class="log-list">
+    <ion-item class="log"
+      *ngFor="#log of logs.reverse(); #i = index"
+      *ngIf="i < 5"
+      [ngClass]="{
+        'fade-in': i === 0
+      }">
+      <span class="label">
+        {{project.name}}::{{activity.name}}
+      </span>
+      <span class="time">
+       {{deltaT(log)|timeFormat}}
+     </span>
+    </ion-item>
+  </ion-list>
+  <button fab fab-center fab-bottom class="timer button"
+    (click)="toggleTimer()">
+    <ion-icon [name]="getIconeName()"></ion-icon>
+  </button>
 </ion-content>

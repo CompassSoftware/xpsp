@@ -1,24 +1,29 @@
 import {Component, Input} from 'angular2/core';
-import {IONIC_DIRECTIVES, NavController, Modal, ActionSheet, Platform} from 'ionic-angular';
+import {IONIC_DIRECTIVES, NavController, NavParams, Modal, ActionSheet, Platform} from 'ionic-angular';
 import {Activity} from '../../shared/interfaces/activity';
+import {Project} from '../../shared/interfaces/project';
 import {ActivityProvider} from '../../services/activity-provider/activity-provider.svc';
+import {LogProvider} from '../../services/log-provider/log-provider.svc';
 import {Icon} from '../../shared/interfaces/icon';
 import {IconProvider} from '../../services/icon-provider/icon-provider.svc';
 import {EditActivityModal} from '../../pages/activities/modals/edit-activity.mod';
+import {TimerPage} from '../../pages/timer/timer';
+import {TimeFormat} from '../../pipes/time-format/time-format.pip';
 
 @Component({
   selector: 'activity-detail',
   templateUrl: 'build/components/activity-detail/activity-detail.cmp.html',
   styleUrls: [],
-  providers: [IconProvider],
+  providers: [IconProvider, LogProvider],
   directives: [IONIC_DIRECTIVES, ActivityDetail],
-  pipes: []
+  pipes: [TimeFormat]
 })
 export class ActivityDetail {
   private icons: Array<Icon>;
   nav: NavController;
   actionSheet: ActionSheet;
   platform: Platform;
+  project: Project;
 
   @Input() activity: Activity;
   @Input() expandedActivities: Array<Activity>;
@@ -26,11 +31,14 @@ export class ActivityDetail {
 
   constructor(
     nav: NavController,
+    navParams: NavParams,
     private _iconProvider: IconProvider,
-    private _activityProvider: ActivityProvider
+    private _activityProvider: ActivityProvider,
+    private _logProvider: LogProvider
   ) {
     this.icons = [];
     this.nav = nav;
+    this.project = navParams.get('project');
   }
 
   ngOnInit() {
@@ -42,6 +50,17 @@ export class ActivityDetail {
       this.icons = icons;
     });
   }
+
+  getLogs() {
+    this._logProvider.getLogsByActivity(this.activity).then((logs) => {
+      return logs;
+    });
+  }
+
+  activityTapped(event, project) {
+    this.nav.push(TimerPage, {project: this.project, activity: this.activity});
+  }
+
 
   editActivity(button) {
     let modal = Modal.create(EditActivityModal, {activity: this.activity});

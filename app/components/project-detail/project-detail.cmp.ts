@@ -4,6 +4,7 @@ import {Project} from '../../shared/interfaces/project';
 import {ProjectProvider} from '../../services/project-provider/project-provider.svc';
 import {ActivitiesPage} from '../../pages/activities/activities';
 import {EditProjectModal} from '../../pages/projects/modals/edit-project.mod';
+import {TimeFormat} from '../../pipes/time-format/time-format.pip';
 
 @Component({
   selector: 'project-detail',
@@ -11,7 +12,7 @@ import {EditProjectModal} from '../../pages/projects/modals/edit-project.mod';
   styleUrls: [],
   providers: [],
   directives: [IONIC_DIRECTIVES],
-  pipes: []
+  pipes: [TimeFormat]
 })
 export class ProjectDetail {
   nav: NavController;

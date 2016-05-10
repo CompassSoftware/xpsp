@@ -39,7 +39,7 @@ export class CreateActivityModal {
       icon: this.activityForm.value.icon
         .replace(/\r?\n|\r| /g,''),
       children: [],
-      delta_time: '00:00:00',
+      delta_time: 0,
       active: false
     };
     // event.preventDefault();

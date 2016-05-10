@@ -24,7 +24,7 @@ export class CreateProjectModal {
       name: this.projectForm.value.name,
       description: this.projectForm.value.description,
       tags: this.projectForm.value.tags.split(","),
-      delta_time: '00:00:00',
+      delta_time: 0,
       active: false
     };
     event.preventDefault();
