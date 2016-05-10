@@ -94,10 +94,16 @@
   to{opacity:1;}
 }
 
-.timer-toolbar .toolbar-title, .timer-toolbar .back-button {
+.timer-toolbar .toolbar-title {
   color: #fff;
+}
+
+.timer-toolbar .back-button {
+  color: hsl(262, 24%, 61%);
+  background: none;
 }
 
 .timer-toolbar .toolbar-background {
   background-color: #110055;
+  border-color: #110055;
 }
