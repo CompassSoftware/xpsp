@@ -1,8 +1,6 @@
 <!-- FIXME: Inherit colors from app.variables.scss or separate css in component -->
 <ion-item-sliding>
-  <ion-item
-    (click)="activityTapped($event, activity)"
-    [style.background]="(!expanded) ? '#ffffff' : '#f4f4f4'">
+  <ion-item [style.background]="(!expanded) ? '#ffffff' : '#f4f4f4'">
     <ion-icon name="{{activity.icon}}" item-left></ion-icon>
     <h3>{{activity.name}}</h3>
     <p>{{activity.delta_time|timeFormat}}</p>
@@ -17,7 +15,7 @@
       <ion-icon name="ios-more"></ion-icon>
       Edit
     </button>
-    <button secondary>
+    <button secondary (click)="activityTapped($event, activity)">
       <ion-icon name="ios-play"></ion-icon>
       Start
     </button>

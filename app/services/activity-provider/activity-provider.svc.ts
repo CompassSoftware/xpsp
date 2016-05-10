@@ -28,7 +28,7 @@ export class ActivityProvider {
     return low;
   }
 
-  private onDBChange(change){
+  private onDBChange = (change) => {
     var idx = this.findIdx(this._activities, change.id);
     var activity = this._activities[idx];
 
