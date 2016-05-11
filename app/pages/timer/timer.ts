@@ -16,6 +16,7 @@ import {TimeFormat} from '../../pipes/time-format/time-format.pip';
 })
 export class TimerPage {
   private _log: Log;
+  private intervalid: any;
   public logs: Array<Log>;
   public started: boolean;
   public timer: number;
@@ -41,24 +42,18 @@ export class TimerPage {
     }
     this.timer = 0;
     this.started = true;
-    this._incrementClock();
+    this.intervalid = setInterval(() => {
+      this.timer++;
+    }, 1000);
   }
 
   public stopTimer(){
     setTimeout(() => {this.timer = 0;}, 500);
+    clearInterval(this.intervalid);
     this.started = false;
     this._log.endTime = Date.now();
     this.log(this._log);
     this.logs.push(this._log);
-  }
-
-  private _incrementClock(){
-    this.timer++;
-    setTimeout(() => {
-      if(this.started){
-        this._incrementClock();
-      }
-    }, 1000);
   }
 
   public toggleTimer() {
