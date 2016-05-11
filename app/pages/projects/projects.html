@@ -14,7 +14,7 @@
 <ion-content>
   <ion-pane>
     <ion-searchbar *ngIf="searchActive" [(ngModel)]="projectQuery"></ion-searchbar>
-    <project-list [projects]="projects | projectSort:projectQuery"></project-list>
+    <project-list [projects]="projects | projectSort:projectQuery" *ngIf="projects.length > 0"></project-list>
     <button fab fab-right fab-bottom (click)="createProject($event)">
       <ion-icon name="add"></ion-icon>
     </button>
