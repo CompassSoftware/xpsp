@@ -26,6 +26,8 @@ Thumbs.db
 npm-debug.log
 testem.log
 /typings
+/resources/android
+/resources/ios
 
 # e2e
 /e2e/*.js
