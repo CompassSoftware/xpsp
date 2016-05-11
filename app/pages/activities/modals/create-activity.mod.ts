@@ -40,6 +40,7 @@ export class CreateActivityModal {
         .replace(/\r?\n|\r| /g,''),
       children: [],
       delta_time: 0,
+      default: false,
       active: false
     };
     // event.preventDefault();

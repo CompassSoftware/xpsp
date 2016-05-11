@@ -3,5 +3,6 @@ export interface Activity {
   delta_time: number,
   icon: String,
   children: this[],
-  level: number
+  level: number,
+  default: boolean
 }

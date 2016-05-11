@@ -1,6 +1,39 @@
 import {Icon} from '../../shared/interfaces/icon';
 
 export var ICONS: Icon[] = [{
+      "name": "clipboard",
+    },
+    {
+      "name": "checkbox-outline"
+    },
+    {
+      "name": "bulb"
+    },
+    {
+      "name": "code"
+    },
+    {
+      "name": "code-working"
+    },
+    {
+      "name": "person"
+    },
+    {
+      "name": "people"
+    },
+    {
+      "name": "hammer"
+    },
+    {
+      "name": "create"
+    },
+    {
+      "name": "bug"
+    },
+    {
+      "name": "cafe"
+    },
+    {
       "code": "0xf101",
       "name": "alert"
     },
